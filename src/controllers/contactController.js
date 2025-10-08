@@ -38,6 +38,13 @@ exports.getAllContacts = async (req, res) => {
       data: contacts,
     });
   } catch (error) {
-    res.status(500).json({ error: "Server error while fetching contacts" });
+   res.status(500).json({
+  message: "Server error while fetching contacts",
+  error: {
+    name: error.name,
+    message: error.message,
+    stack: error.stack,
+  },
+});
   }
 };
